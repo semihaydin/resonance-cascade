@@ -21,5 +21,5 @@ public class HomePage {
     public boolean checkHomePage() {
         return driver.getCurrentUrl().equals(homepageURL) && driver.getTitle().equals(expectedTitle);
     }
-    
+
 }
