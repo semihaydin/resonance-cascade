@@ -6,10 +6,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.CareersPage;
 import pages.HomePage;
+import pages.QualityAssurancePage;
 
-public class HomeNCareersPageTests {
+public class TestBase {
     HomePage homePage;
     CareersPage careersPage;
+    QualityAssurancePage qualityAssurancePage;
     private WebDriver driver;
 
     @BeforeSuite
@@ -17,6 +19,7 @@ public class HomeNCareersPageTests {
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
         careersPage = new CareersPage(driver);
+        qualityAssurancePage = new QualityAssurancePage(driver);
     }
 
     @Test
@@ -37,11 +40,11 @@ public class HomeNCareersPageTests {
         Assert.assertEquals(
                 driver.getTitle(), "#1 Leader in Individualized, Cross-Channel CX — Insider", "The title does not match the expected title"
         );
-
+        System.out.println("Homepage tests passed.");
     }
 
     @Test
-    public void testCareerPage() throws InterruptedException {
+    public void testCareerPage() {
         homePage.openHomePage();
         careersPage.clickCompany();
         careersPage.clickCareers();
@@ -66,6 +69,17 @@ public class HomeNCareersPageTests {
         Assert.assertTrue(careersPage.isTeamSectionDisplayed(), "Team section is not displayed on the page.");
         // Verify the Life at Insider block
         Assert.assertTrue(careersPage.islifeatInsiderSectionDisplayed(), "lifeat insider section is not displayed on the page.");
+        System.out.println("Career page tests passed.");
+    }
+
+    @Test
+    public void testQualityAssurancePage() {
+        qualityAssurancePage.goToQualityAssurancePage();
+        qualityAssurancePage.clickSeeAllQAJobs();
+        qualityAssurancePage.filterJobsByIstanbulTurkeyNQA();
+        qualityAssurancePage.validateJobListings();
+        qualityAssurancePage.checkLeverPage();
+        System.out.println("Quality Assurance page tests passed.");
     }
 
     @AfterSuite

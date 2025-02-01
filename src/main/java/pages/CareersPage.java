@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 
 public class CareersPage {
     WebDriver driver;
+    private final By locationsBlock = By.cssSelector("#career-our-location > div > div > div > div.col-12.col-md-6 > p");
+    private final By teamsBlock = By.cssSelector("[data-id='b6c45b2']");
+    private final By lifeatInsiderBlock = By.cssSelector("[data-id='a8e7b90']");
     String careersURL = "https://useinsider.com/careers/";
     String expectedTitle = "Ready to disrupt? | Insider Careers";
 
@@ -14,7 +17,6 @@ public class CareersPage {
     }
 
     public void clickCompany() {
-
         WebElement companyMenuItem = driver.findElement(By.linkText("Company"));
         companyMenuItem.click();
     }
@@ -28,19 +30,15 @@ public class CareersPage {
         return driver.getCurrentUrl().equals(careersURL) && driver.getTitle().equals(expectedTitle);
     }
 
-    private final By locationsBlock = By.cssSelector("[data-id='8ab30be']");
-
     public boolean isLocationSectionDisplayed() {
         return driver.findElement(locationsBlock).isDisplayed();
     }
 
-    private final By teamsBlock = By.cssSelector("[data-id='b6c45b2']");
 
     public boolean isTeamSectionDisplayed() {
         return driver.findElement(teamsBlock).isDisplayed();
     }
 
-    private final By lifeatInsiderBlock = By.cssSelector("[data-id='a8e7b90']");
 
     public boolean islifeatInsiderSectionDisplayed() {
         return driver.findElement(lifeatInsiderBlock).isDisplayed();
